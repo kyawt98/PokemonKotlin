@@ -19,25 +19,10 @@ import com.kyawt.pokemonmvvm.viewmodel.PokemonDetailViewModel
 import com.kyawt.pokemonmvvm.viewmodel.PokemonViewModel
 import kotlinx.android.synthetic.main.fragment_pokemon_list.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PokemonListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PokemonListFragment : Fragment(), PokemonViewHolder.ClickListener {
 
     lateinit var pokemonAdapter: PokemonAdapter
     lateinit var pokemonViewModel: PokemonViewModel
-
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +49,7 @@ class PokemonListFragment : Fragment(), PokemonViewHolder.ClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        pokemonViewModel.loadResult()
         observeViewModel()
     }
 
@@ -77,7 +62,7 @@ class PokemonListFragment : Fragment(), PokemonViewHolder.ClickListener {
             }
         })
 
-        pokemonViewModel.loadResult().observe(this, Observer<Pokemon> { isResult ->
+        pokemonViewModel.pokemonResult.observe(this, Observer<Pokemon> { isResult ->
             Loading.visibility = View.GONE
             recycler_pokemon.visibility = View.VISIBLE
             pokemonAdapter.updateList(isResult.pokemon)

@@ -10,22 +10,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PokemonRepository {
-    fun getPokemon():LiveData<Pokemon>{
+    suspend fun getPokemon(): Pokemon{
         val service = ServiceProvider.getService()
-        val data : MutableLiveData<Pokemon> = MutableLiveData()
-        service.getPokemon().enqueue(object : Callback<Pokemon>{
-            override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                Log.d("Error", t.toString())
-            }
-
-            override fun onResponse(
-                call: Call<Pokemon>,
-                response: Response<Pokemon>
-            ) {
-                data.value = Pokemon(response.body()?.pokemon?: emptyList())
-            }
-        })
-
-        return data
+        return  service.getPokemon()
     }
 }

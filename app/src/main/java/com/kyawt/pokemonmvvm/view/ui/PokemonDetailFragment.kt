@@ -16,6 +16,7 @@ import com.kyawt.pokemonmvvm.databinding.FragmentPokemonDetailBinding
 import com.kyawt.pokemonmvvm.service.model.PokemonX
 import com.kyawt.pokemonmvvm.view.exts.logd
 import com.kyawt.pokemonmvvm.viewmodel.PokemonDetailViewModel
+import kotlinx.android.synthetic.main.fragment_pokemon_detail.*
 import kotlinx.android.synthetic.main.fragment_pokemon_detail.view.*
 import kotlin.math.log
 
@@ -44,6 +45,8 @@ class PokemonDetailFragment : Fragment() {
         viewBinding.apply {
             lifecycleOwner = this@PokemonDetailFragment
             viewmodel = pokemonDetailViewModel
+            viewPalette =  detailLayout
+
         }
 
         val pokemon = arguments?.getParcelable<PokemonX>(BundleKey.DETAIL_KEY)

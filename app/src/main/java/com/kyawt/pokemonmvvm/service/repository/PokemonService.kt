@@ -7,8 +7,5 @@ import retrofit2.http.GET
 
 interface PokemonService {
     @GET("Biuni/PokemonGo-Pokedex/master/pokedex.json?fbclid=IwAR1O_LnnkhUjFdm8rd83l2hHc8qtjS-cvlOs92kuzXw9LoOsme6MUvltVEM")
-    fun getPokemon() :  Call<Pokemon>
-
-    @GET("Biuni/PokemonGo-Pokedex/master/pokedex.json?fbclid=IwAR1O_LnnkhUjFdm8rd83l2hHc8qtjS-cvlOs92kuzXw9LoOsme6MUvltVEM")
-    fun getPokemonDetail() :  Call<PokemonX>
+    suspend fun getPokemon() :  Pokemon
 }
